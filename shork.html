@@ -29,7 +29,7 @@
     if (vibrateSupport) { //兼容不同的浏览器
         navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
     }
-    navigator.vibrate([300,200,300,200,300]);
+
     function deviceMotionHandler(eventData) {
         var acceleration = eventData.accelerationIncludingGravity;
         var currTime = new Date().getTime();
@@ -45,6 +45,7 @@
             if (speed > SHAKE_THRESHOLD) {
                 //要一摇之后进行业务逻辑处理
                 doResult();
+                navigator.vibrate([300,200,300,200,300]);
             }
 
 
