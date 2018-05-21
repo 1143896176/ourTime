@@ -21,10 +21,25 @@
 <label>摄像机</label>
 <input type="file" id='video' accept="video/*" capture='camcorder'>
 <body>
-<div class="shock">
+<div class="shock" onclick="a()">
     按我手机会震动
 </div>
 <script>
+    function a(){
+        var camera = plus.camera.getCamera( 1 ); //获取摄像头管理对象
+        camera.captureImage(function(capturedFile){
+            console.log("capturedFile:"+capturedFile);
+        }, function(e){
+            console.log("拍照错误："+e.message);
+        },{
+            index:1,
+            popover:{
+                top:'0px',
+                left:'0px'
+            }
+        });
+    }
+
     function vibration() {
     navigator.vibrate = navigator.vibrate
         || navigator.webkitVibrate
