@@ -20,7 +20,9 @@
         }
     </style>
 </head>
+
 <body>
+<h1 onclick="navigator.vibrate([300,200,300,200])">点我震动</h1>
 <script>
     if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
@@ -45,7 +47,7 @@
             if (speed > SHAKE_THRESHOLD) {
                 //要一摇之后进行业务逻辑处理
                 doResult();
-                navigator.vibrate([300,200,300,200,300]);
+
             }
 
 
