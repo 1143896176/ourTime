@@ -23,6 +23,7 @@
 
 <body>
 <h1 onclick="navigator.vibrate([300,200,300,200])">点我震动</h1>
+<a href="tel:15532491061">打电话</a>
 <script>
     if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
@@ -49,8 +50,6 @@
                 doResult();
 
             }
-
-
             last_x = x;
             last_y = y;
             last_z = z;
