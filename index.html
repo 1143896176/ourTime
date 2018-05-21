@@ -14,7 +14,17 @@
             color: red;
         }
     </style>
+
 </head>
+<ul>
+    <li><a href="GPS2.html"> GPS</a></li>
+    <li><a href="position.html"> 定位</a></li>
+    <li><a href="shork.html.html">震动</a></li>
+    <li><a href="识别用户的浏览器.html"> 识别浏览器</a></li>
+    <li><a href="GPS2.html"></a></li>
+</ul>
+
+
 <label>照相机</label>
 <input type="file" id='image' accept="image/*" capture='camera'>
 <br>
@@ -28,19 +38,19 @@
 
 
     function vibration() {
-    navigator.vibrate = navigator.vibrate
-        || navigator.webkitVibrate
-        || navigator.mozVibrate
-        || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate
+            || navigator.webkitVibrate
+            || navigator.mozVibrate
+            || navigator.msVibrate;
 
-    if (navigator.vibrate) {
-        // 支持
-        console.log("支持设备震动！");
-    }
-    $(".shock").click(function () {
-        alert("1111");
-        navigator.vibrate([500, 300, 400, 300]);
-    });
-}</script>
+        if (navigator.vibrate) {
+            // 支持
+            console.log("支持设备震动！");
+        }
+        $(".shock").click(function () {
+            alert("1111");
+            navigator.vibrate([500, 300, 400, 300]);
+        });
+    }</script>
 </body>
 </html>
