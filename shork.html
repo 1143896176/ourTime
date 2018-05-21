@@ -24,13 +24,36 @@
 <body>
 <script>
     if (window.DeviceMotionEvent) {
-        alert('支持')
     window.addEventListener('devicemotion', deviceMotionHandler, false);
 }
 var vibrateSupport = "vibrate" in navigator
 if (vibrateSupport) { //兼容不同的浏览器
     navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-}  </script>
+}
+    function deviceMotionHandler(eventData) {
+        var acceleration = eventData.accelerationIncludingGravity;
+        var currTime = new Date().getTime();
+        var diffTime = currTime - last_update;
+        console.info(diffTime);
+        if (diffTime > 100) {
+            last_update = currTime;
+            x = acceleration.x;
+            y = acceleration.y;
+            z = acceleration.z;
+            var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 30000;
+            console.info(speed);
+            if (speed > SHAKE_THRESHOLD) {
+                //要一摇之后进行业务逻辑处理
+                doResult();
+            }
+
+
+            last_x = x;
+            last_y = y;
+            last_z = z;
+
+        }
+</script>
 
 </body>
 </html>
