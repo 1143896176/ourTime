@@ -5,14 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href="../img/logo.png">
-    <link href="../css/util.css" rel="stylesheet" type="text/css"/>
-    <title>title</title>
-    <style>
 
+    <title>手机震动测试</title>
+    <style>
+        .shock {
+            font-size: 15px;
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body>
+<div class="shock">
+    按我手机会震动
+</div>
+<script>
+    function vibration() {
+    navigator.vibrate = navigator.vibrate
+        || navigator.webkitVibrate
+        || navigator.mozVibrate
+        || navigator.msVibrate;
 
+    if (navigator.vibrate) {
+        // 支持
+        console.log("支持设备震动！");
+    }
+    $(".shock").click(function () {
+        alert("1111");
+        navigator.vibrate([500, 300, 400, 300]);
+    });
+}</script>
 </body>
 </html>
