@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -24,8 +24,14 @@
 <script>
     var the_browser_name = navigator.appName;
     console.log(the_browser_name);
-    alert(the_browser_name)
+    if (window.moveTo)
+    {
+        window.moveTo()
+    }
 
+    var version=navigator.appVersion;
+    alert(the_browser_name);
+    alert(version)
 </script>
 </body>
 </html>
