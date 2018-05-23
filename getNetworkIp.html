@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>获取网络IP</title>
+    <style>
+        * {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<script language="javascript" type="text/javascript">
+    //获取本地IP
+    function GetLocalIPAddress()
+    {
+        var obj = null;
+        var rslt = "";
+        try
+        {
+            obj = new ActiveXObject("rcbdyctl.Setting");
+            rslt = obj.GetIPAddress;
+            obj = null;
+        }
+        catch(e)
+        {
+            alert("ErrInfoIS:"+e)
+        }
+        return rslt;
+    }
+    document.write("你的IP是：" + GetLocalIPAddress());
+</script>
+
+</body>
+</html>
