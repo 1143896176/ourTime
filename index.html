@@ -1,56 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>our time</title>
+      <script>
+          ;(function(designWidth, maxWidth) {
+              var doc = document,
+                  win = window,
+                  docEl = doc.documentElement,
+                  remStyle = document.createElement("style"),
+                  tid;
 
-    <title>手机震动测试</title>
-    <style>
-        .shock {
-            font-size: 15px;
-            font-weight: bold;
-            color: red;
-        }
-    </style>
+              function refreshRem() {
+                  var width = docEl.getBoundingClientRect().width;
+                  maxWidth = maxWidth || 540;
+                  width>maxWidth && (width=maxWidth);
+                  var rem = width * 100 / designWidth;
+                  remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+              }
 
-</head>
-<ul>
-    <li><a href="GPS2.html"> GPS</a></li>
-    <li><a href="position.html"> 定位</a></li>
-    <li><a href="shork.html.html">震动</a></li>
-    <li><a href="shibie.html"> 识别浏览器</a></li>
-    <li><a href="getNetworkIp.html">获取网络IP</a></li>
-</ul>
+              if (docEl.firstElementChild) {
+                  docEl.firstElementChild.appendChild(remStyle);
+              } else {
+                  var wrap = doc.createElement("div");
+                  wrap.appendChild(remStyle);
+                  doc.write(wrap.innerHTML);
+                  wrap = null;
+              }
+              //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+              refreshRem();
 
+              win.addEventListener("resize", function() {
+                  clearTimeout(tid); //防止执行两次
+                  tid = setTimeout(refreshRem, 300);
+              }, false);
 
-<label>照相机</label>
-<input type="file" id='image' accept="image/*" capture='camera'>
-<br>
-<label>摄像机</label>
-<input type="file" id='video' accept="video/*" capture='camcorder'>
-<body>
-<div class="shock" onclick="a()">
-    按我手机会震动
-</div>
-<script>
+              win.addEventListener("pageshow", function(e) {
+                  if (e.persisted) { // 浏览器后退的时候重新计算
+                      clearTimeout(tid);
+                      tid = setTimeout(refreshRem, 300);
+                  }
+              }, false);
 
-
-    function vibration() {
-        navigator.vibrate = navigator.vibrate
-            || navigator.webkitVibrate
-            || navigator.mozVibrate
-            || navigator.msVibrate;
-
-        if (navigator.vibrate) {
-            // 支持
-            console.log("支持设备震动！");
-        }
-        $(".shock").click(function () {
-            alert("1111");
-            navigator.vibrate([500, 300, 400, 300]);
-        });
-    }</script>
-</body>
+              if (doc.readyState === "complete") {
+                  doc.body.style.fontSize = "16px";
+              } else {
+                  doc.addEventListener("DOMContentLoaded", function(e) {
+                      doc.body.style.fontSize = "16px";
+                  }, false);
+              }
+          })(750, 750);
+      </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
