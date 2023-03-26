@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <!-- 引入样式文件 -->
-      <link
-              rel="stylesheet"
-              href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css"
-      />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="./vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- 引入样式文件 -->
+    <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css"
+    />
 
-      <!-- 引入 Vue 和 Vant 的 JS 文件 -->
-      <script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
-      <script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
     <title>our time</title>
-      <script>
-          ;(function(designWidth, maxWidth) {
-              var doc = document,
-                  win = window,
-                  docEl = doc.documentElement,
-                  remStyle = document.createElement("style"),
-                  tid;
+    <script>
+        ;(function (designWidth, maxWidth) {
+            var doc = document,
+                win = window,
+                docEl = doc.documentElement,
+                remStyle = document.createElement("style"),
+                tid;
 
-              function refreshRem() {
-                  var width = docEl.getBoundingClientRect().width;
-                  maxWidth = maxWidth || 540;
-                  width>maxWidth && (width=maxWidth);
-                  var rem = width * 100 / designWidth;
-                  remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
-              }
+            function refreshRem() {
+                var width = docEl.getBoundingClientRect().width;
+                maxWidth = maxWidth || 540;
+                width > maxWidth && (width = maxWidth);
+                var rem = width * 100 / designWidth;
+                remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+            }
 
-              if (docEl.firstElementChild) {
-                  docEl.firstElementChild.appendChild(remStyle);
-              } else {
-                  var wrap = doc.createElement("div");
-                  wrap.appendChild(remStyle);
-                  doc.write(wrap.innerHTML);
-                  wrap = null;
-              }
-              //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
-              refreshRem();
+            if (docEl.firstElementChild) {
+                docEl.firstElementChild.appendChild(remStyle);
+            } else {
+                var wrap = doc.createElement("div");
+                wrap.appendChild(remStyle);
+                doc.write(wrap.innerHTML);
+                wrap = null;
+            }
+            //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+            refreshRem();
 
-              win.addEventListener("resize", function() {
-                  clearTimeout(tid); //防止执行两次
-                  tid = setTimeout(refreshRem, 300);
-              }, false);
+            win.addEventListener("resize", function () {
+                clearTimeout(tid); //防止执行两次
+                tid = setTimeout(refreshRem, 300);
+            }, false);
 
-              win.addEventListener("pageshow", function(e) {
-                  if (e.persisted) { // 浏览器后退的时候重新计算
-                      clearTimeout(tid);
-                      tid = setTimeout(refreshRem, 300);
-                  }
-              }, false);
+            win.addEventListener("pageshow", function (e) {
+                if (e.persisted) { // 浏览器后退的时候重新计算
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem, 300);
+                }
+            }, false);
 
-              if (doc.readyState === "complete") {
-                  doc.body.style.fontSize = "16px";
-              } else {
-                  doc.addEventListener("DOMContentLoaded", function(e) {
-                      doc.body.style.fontSize = "16px";
-                  }, false);
-              }
-          })(750, 750);
-      </script>
-    <script type="module" crossorigin src="./assets/index-c0c76a09.js"></script>
-    <link rel="stylesheet" href="./assets/index-1a7af25a.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    
-    <script src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+            if (doc.readyState === "complete") {
+                doc.body.style.fontSize = "16px";
+            } else {
+                doc.addEventListener("DOMContentLoaded", function (e) {
+                    doc.body.style.fontSize = "16px";
+                }, false);
+            }
+        })(750, 750);
+    </script>
+  <script type="module" crossorigin src="./assets/index-bdb2ff03.js"></script>
+  <link rel="stylesheet" href="./assets/index-7d4e71b8.css">
+</head>
+<body>
+<div id="app"></div>
 
-  </body>
+<script src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+<script>
+    window.onload = function () {
+
+
+        var elem = document.getElementById("body");
+
+        requestFullScreen(elem);
+
+
+    }
+</script>
+</body>
 </html>

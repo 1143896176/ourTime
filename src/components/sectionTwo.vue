@@ -104,6 +104,7 @@ function openNoteBook() {
   section{
     background: linear-gradient(#2b1055,#7597de);
     .text-content{
+      font-family: cursive;
       display: none;
       opacity: 0;
       position: absolute;
