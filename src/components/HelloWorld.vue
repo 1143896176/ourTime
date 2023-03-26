@@ -1,6 +1,6 @@
 <template>
-  <audio :src="getRootFile('audio/C400003vyCD03Qjocc.m4a')" preload ref = 'bgAudio' loop></audio>
-  <audio :src="getRootFile('audio/12838.wav')" style="display: none" ref="audio" preload></audio>
+  <audio :src="getRootFile('audio/C400003vyCD03Qjocc.m4a')" preload="metadata" ref = 'bgAudio' loop="true"></audio>
+  <audio :src="getRootFile('audio/12838.wav')" style="display: none" ref="audio" preload="metadata"></audio>
 
   <Transition name="animate__animated animate__bounce" enter-active-class="animate__fadeInLeft" leave-active-class="animate__fadeOutUpBig">
 <!--    <sectionOne v-if="setupCount = 0" @next="setupCount++"></sectionOne>-->
@@ -27,6 +27,8 @@ const configComp  = {
   '1':sectionTwo
 }
 watch(setupCount,(n:number)=>{
+
+  //@ts-ignore
   activeComponent.value = configComp[n]
 })
 function playBg() {

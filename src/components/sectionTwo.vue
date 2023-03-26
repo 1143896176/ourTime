@@ -81,7 +81,7 @@ function openNoteBook() {
       isOpenBook.value = true
       setTimeout(function () {
         var typed = new Typed('.text-content', {
-          strings: [`这天我认识了一个姑娘，她是位中学老师······\n (后面的你就都知道了😂😂)`],//输入内容, 支持html标签
+          strings: [`今天我很高兴认识了一个姑娘，她是位中学老师，她······\n (后面的你就都知道了😂😂)`],//输入内容, 支持html标签
           typeSpeed: 200, //打字速度
           backSpeed: 50, //回退速度
           showCursor: false,
