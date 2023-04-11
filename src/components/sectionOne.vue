@@ -1,6 +1,6 @@
 <template>
   <div class="bg-g" >
-    <audio src="/audio/12838.wav" style="display: none" ref="audio" preload="metadata"></audio>
+    <audio src="/audio/12838.wav" style="display: none" ref="audios" preload="metadata"></audio>
     <div class="bg-g">
       <div class="book book1" @click="openBook('book1')">
         <img class="book-bg" :src="getAssetsFile('png/bg.png')">
@@ -91,7 +91,7 @@ import { useIntervalFn } from '@vueuse/core'
 
 const warn = ref(false)
 const isCanClick = ref(false)
-const audio = ref(null)
+const audios = ref(null)
 
 
 const ourTime = ref({})
@@ -160,7 +160,7 @@ function openBook(type: string) {
     showToast('别着急，先看完哈哈');
     return
   }
-  (audio.value as any).play()
+  (audios.value as any).play()
   const otherBook = type == 'book1' ? 'book1' : 'book2'
   if (type === 'book1') {
     warn.value = true
@@ -169,7 +169,7 @@ function openBook(type: string) {
     showToast('这边暂时保密，不能看！！');
     return;
   }
-  (audio.value as any).onpause = ()=>{
+  (audios.value as any).onpause = ()=>{
     emit('next','1')
   }
 

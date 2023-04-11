@@ -6,7 +6,7 @@
     <!--    <sectionOne v-if="setupCount = 0" @next="setupCount++"></sectionOne>-->
     <!--    <sectionTwo v-if="setupCount = 1" @next="setupCount++"></sectionTwo>-->
 
-      <component :is="activeComponent" @next="setupCount++" @playBgAudio="playBg" @playAudio="playAudio" :key="activeComponent"/>
+      <component :is="activeComponent" @next="setupCount++" @playBgAudio="playBg" @playAudio="playAudio" />
   </Transition>
 
 </template>
@@ -20,11 +20,11 @@ const bgAudio = ref(null)
 const audio = ref(null)
 const activeComponent = ref(shallowRef(sectionOne))
 const configComp  = {
-  '0':shallowRef(sectionOne),
-  '1':shallowRef(sectionTwo)
+  '0':sectionOne,
+  '1':sectionTwo
 }
 watch(setupCount,(n:number)=>{
-
+  console.log(n)
   //@ts-ignore
   activeComponent.value = configComp[n]
 })
