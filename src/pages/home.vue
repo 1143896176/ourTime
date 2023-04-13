@@ -1,6 +1,6 @@
 <template>
-  <audio src="/audio/C400003vyCD03Qjocc.m4a" preload="metadata" ref = 'bgAudio' loop="true"></audio>
-  <audio src="/audio/12838.wav" style="display: none" ref="audio" preload="metadata"></audio>
+  <audio :src="getRootFile('/audio/C400003vyCD03Qjocc.m4a')" preload="metadata" ref = 'bgAudio' loop="true"></audio>
+  <audio :src="getRootFile('/audio/12838.wav')" style="display: none" ref="audio" preload="metadata"></audio>
 
   <Transition name="animate__animated animate__bounce" enter-active-class="animate__fadeInLeft" leave-active-class="animate__fadeOutUpBig">
     <!--    <sectionOne v-if="setupCount = 0" @next="setupCount++"></sectionOne>-->
@@ -11,6 +11,7 @@
 
 </template>
 <script setup lang="ts">
+import {getAssetsFile,getRootFile} from "../utils/getImg";
 
 import sectionOne from '../components/sectionOne.vue'
 import sectionTwo from '../components/sectionTwo.vue'

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-g" >
-    <audio src="/audio/12838.wav" style="display: none" ref="audios" preload="metadata"></audio>
+    <audio :src="getRootFile('/audio/12838.wav')" style="display: none" ref="audios" preload="metadata"></audio>
     <div class="bg-g">
       <div class="book book1" @click="openBook('book1')">
         <img class="book-bg" :src="getAssetsFile('png/bg.png')">

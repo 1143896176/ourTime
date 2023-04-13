@@ -1,21 +1,23 @@
 
 <template>
   <section>
-    <img src="/images/stars.png"  id="starts">
-    <img src="/images/moon.png"  id="moon">
-    <img src="/images/mountains_behind.png"  id="mountains_behind">
+    <img :src="getAssetsFile('stars.png')"  id="starts">
+    <img :src="getAssetsFile('moon.png')"  id="moon">
+    <img :src="getAssetsFile('mountains_behind.png')"  id="mountains_behind">
     <h2  id="text" style="text-align: center;    font-family: cursive;" class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="openNoteBook">
       2022年09月12日 <br>
       10:49:00 <br>
       时间回到 {{diffTime.day}}天{{diffTime.h}}小时前
     </h2>
     <a href="javascript:void (0)" id="btn"  class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="play">Play</a>
-    <img src="/images/mountains_front.png"  id="mountains_front">
+    <img :src="getAssetsFile('mountains_front.png')"  id="mountains_front">
     <div class="text-content" :class="{show:isOpenBook}"></div>
   </section>
 </template>
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
+import {getAssetsFile,getRootFile} from "../utils/getImg";
+
 import anime from 'animejs';
 import Typed from 'typed.js'
 import {appendTime} from "../utils/date";
