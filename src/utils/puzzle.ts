@@ -61,7 +61,6 @@ export class Grid{
     ) {
         this.init()
     }
-
     init(){
         if(this.originIndex===8){
             this.isNull = true

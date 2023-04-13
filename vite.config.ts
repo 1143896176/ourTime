@@ -36,13 +36,13 @@ export default defineConfig({
     base:'./',
     build:{
       outDir:'docs',
-        rollupOptions:{
-            input: {
-                page: path.resolve(__dirname, 'src/main.ts'),
-                game: path.resolve(__dirname, 'game/main.ts')
-            },
-
-        }
+        // rollupOptions:{
+        //     input: {
+        //         page: path.resolve(__dirname, 'src/main.ts'),
+        //         game: path.resolve(__dirname, 'game/main.ts')
+        //     },
+        //
+        // }
     },
     plugins: [
         vue(),
