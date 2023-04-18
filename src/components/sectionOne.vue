@@ -1,6 +1,5 @@
 <template>
   <div class="bg-g" >
-    <audio :src="getRootFile('/audio/12838.wav')" style="display: none" ref="audios" preload="metadata"></audio>
     <div class="bg-g">
       <div class="book book1" @click="openBook('book1')">
         <img class="book-bg" :src="getAssetsFile('png/bg.png')">
@@ -91,18 +90,19 @@ import { useIntervalFn } from '@vueuse/core'
 
 const warn = ref(false)
 const isCanClick = ref(false)
-const audios = ref(null)
+const audios = ref<HTMLAudioElement>()
 
 
 const ourTime = ref({})
 console.log(ourTime)
-const emit =  defineEmits(['next'])
+const emit =  defineEmits(['next','playBgAudio','playAudio'])
 const animationInit = anime.timeline({
   autoplay: false, complete: () => {
     isCanClick.value = true
   }
 })
 onMounted(() => {
+
   animationInit.add({
     targets: '.book-bg',
     opacity: '1',
@@ -160,18 +160,16 @@ function openBook(type: string) {
     showToast('别着急，先看完哈哈');
     return
   }
-  (audios.value as any).play()
+  emit('playAudio')
+
   const otherBook = type == 'book1' ? 'book1' : 'book2'
   if (type === 'book1') {
     warn.value = true
-
-
     showToast('这边暂时保密，不能看！！');
     return;
   }
-  (audios.value as any).onpause = ()=>{
     emit('next','1')
-  }
+
 
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
-  <audio :src="getRootFile('/audio/C400003vyCD03Qjocc.m4a')" preload="metadata" ref = 'bgAudio' loop="true"></audio>
-  <audio :src="getRootFile('/audio/12838.wav')" style="display: none" ref="audio" preload="metadata"></audio>
+
 
   <Transition name="animate__animated animate__bounce" enter-active-class="animate__fadeInLeft" leave-active-class="animate__fadeOutUpBig">
     <!--    <sectionOne v-if="setupCount = 0" @next="setupCount++"></sectionOne>-->
@@ -15,10 +14,10 @@ import {getAssetsFile,getRootFile} from "../utils/getImg";
 
 import sectionOne from '../components/sectionOne.vue'
 import sectionTwo from '../components/sectionTwo.vue'
-import {ref, watch,shallowRef} from "vue";
+import {ref, watch, shallowRef, onMounted} from "vue";
 const setupCount = ref(0)
-const bgAudio = ref(null)
-const audio = ref(null)
+const bgAudio = ref<HTMLAudioElement>()
+const audio = ref<HTMLAudioElement>()
 const activeComponent = ref(shallowRef(sectionOne))
 const configComp  = {
   '0':sectionOne,
@@ -35,6 +34,11 @@ function playBg() {
 function playAudio() {
   (audio.value as any).play()
 }
+
+onMounted(()=>{
+  bgAudio.value = document.getElementById('bgAudio') as HTMLAudioElement
+  audio.value = document.getElementById('audio') as HTMLAudioElement
+})
 </script>
 <style scoped lang="scss">
 .v-enter-active,

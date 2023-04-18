@@ -12,15 +12,18 @@
     <a href="javascript:void (0)" id="btn"  class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="play">Play</a>
     <img :src="getAssetsFile('mountains_front.png')"  id="mountains_front">
     <div class="text-content" :class="{show:isOpenBook}"></div>
+    <a v-if="isOk" href="javascript:void (0)" id="btn"  class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="toPlay">To play game</a>
   </section>
 </template>
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import {getAssetsFile,getRootFile} from "../utils/getImg";
+import {getAssetsFile} from "../utils/getImg";
 
 import anime from 'animejs';
 import Typed from 'typed.js'
 import {appendTime} from "../utils/date";
+import {useRouter} from "vue-router";
+let router = useRouter();
 const startTime = new Date('2022-09-12 10:49:00').getTime()
 const now =  new Date().getTime()
 
@@ -29,6 +32,7 @@ const animationBook = anime.timeline({autoplay:false})
 const btn = ref(null)
 const audio = ref(null)
 const isOpenBook = ref(false)
+const isOk = ref(false)
 const diffTime = ref(appendTime())
 const emit = defineEmits(['playBgAudio','playAudio'])
 onMounted(()=>{
@@ -90,7 +94,10 @@ function openNoteBook() {
           typeSpeed: 150, //打字速度
           backSpeed: 50, //回退速度
           showCursor: false,
-          loop:false
+          loop:false,
+          onComplete(){
+            isOk.value = true
+          }
         });
       },1000)
 
@@ -102,7 +109,9 @@ function openNoteBook() {
   animationBook.play()
 
 }
-
+function toPlay() {
+  router.push('/game')
+}
 
 </script>
 <style scoped lang="scss">

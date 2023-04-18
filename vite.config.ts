@@ -42,7 +42,7 @@ export default defineConfig({
             //     game: path.resolve(__dirname, 'game/main.ts')
             // },
             output:{
-                assetFileNames:'assets/[name][extname]',
+                // assetFileNames:'assets/[name][extname]',
             }
 
         }
