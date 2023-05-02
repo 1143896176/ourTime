@@ -1,17 +1,7 @@
 <template>
 <div class="opt">
-  <van-button
-      type="primary"
-      color="#7232dd"
-      icon="replay"
-      round
-  ></van-button>
-  <van-button
-      type="primary"
-      color="#7232dd"
-      icon="music-o"
-      round
-  ></van-button>
+  <van-button type="primary" color="#7232dd" icon="replay" round @click="reSet"></van-button>
+  <van-button type="primary" color="#7232dd" icon="music-o" round></van-button>
 </div>
 <div class="container">
 
@@ -28,14 +18,11 @@ let warp: HTMLElement|null
 let container :Container
 const bg = getAssetsFile('bg1.jpg')
 function init(){
-
    warp = document.querySelector('.container')
     container = new Container( warp!,bg,callback)
 }
 function callback(type:string,value?:any) {
-  console.log(type)
   if(type==='win'){
-
     showDialog({ message: '成功啦！！' }).then(()=>{
       warp!.style.background = `url(${bg}) no-Repeat`
       warp!.style.backgroundSize = `100%`
@@ -46,7 +33,9 @@ function callback(type:string,value?:any) {
     (document.getElementById('audio') as HTMLAudioElement).play()
   }
 }
-
+function reSet() {
+  container.reSet()
+}
 onMounted(()=>{
   init()
 })

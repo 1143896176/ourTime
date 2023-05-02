@@ -118,7 +118,7 @@ function toPlay() {
   section{
     background: linear-gradient(#2b1055,#7597de);
     .text-content{
-      font-family: cursive;
+      font-family: fangsong;
       display: none;
       opacity: 0;
       position: absolute;

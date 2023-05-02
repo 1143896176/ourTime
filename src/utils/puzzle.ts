@@ -8,6 +8,7 @@ export class Container {
     public static callback: Callback
     public static count: number
     public static bg: string
+    public static Timer: number
 
     public width!: number
     public totalGrid!: number
@@ -17,7 +18,6 @@ export class Container {
         Container.bg = this.bg
         Container.callback = this.callback
 
-        console.log(this.bg)
         this.totalGrid = Math.pow(Container.count, 2)
         this.init()
         this.setDifficulty()
@@ -47,7 +47,6 @@ export class Container {
         const girdWidth = this.width / Container.count
         const arrGrid = Array(this.totalGrid).fill(null)
             .map((v, index) => {
-
                 const x = index % Container.count as Pos
                 const y = Math.floor(index / Container.count) as Pos
                 return {
@@ -56,7 +55,6 @@ export class Container {
                     bgStyle: `url(${Container.bg}) -${x * (girdWidth - 5)}px -${y * (girdWidth - 5)}px no-Repeat `
                 }
             })
-        // .sort(()=> Math.random() - 0.5)
 
         Container.allGrid = arrGrid.map((value, index) => {
             const {originIndex, ele, bgStyle} = value
@@ -70,14 +68,62 @@ export class Container {
             const isNullGrid = Container.allGrid.find(grid => grid.isNull)
             isNullGrid!.ele.style.background = isNullGrid!.bgStyle
             isNullGrid!.ele.style.backgroundSize = Container.count + '00%'
-            Container.callback&&Container.callback('win', '')
+            Container.callback && Container.callback('win', '')
         }
     }
 
     clearGrid() {
         this.warpEle.innerHTML = ''
         Container.allGrid = []
-        Container.noMoveList = []
+    }
+
+    public reSet() {
+        this.clearGrid()
+        this.createGrid()
+       this.autoMove()
+    }
+
+    public autoMove(){
+        const nullGrid = Container.allGrid.find(grid => grid.isNull)
+        const nullGridIndex = nullGrid!.index
+
+        const topGridIndex = (nullGridIndex - Container.count) >= 0 ? (nullGridIndex - Container.count) : null
+        const leftGridIndex = Container.noMoveList.map(v=>v.toString()).find(v => {
+            return !v.includes(nullGridIndex-1 + '') && !v.includes((nullGridIndex ) + '')
+        }) ? nullGridIndex - 1 : null
+        let setupGrid :number|null
+
+        const num = Math.random()
+        console.log(num)
+        if(num>0.5){
+            // setupGrid = topGridIndex!==null?
+            //     topGridIndex:
+            //     leftGridIndex!==null?leftGridIndex:null
+            if(topGridIndex===null){
+                setupGrid = leftGridIndex
+            }else {
+                setupGrid = topGridIndex
+            }
+        }else {
+            // setupGrid = leftGridIndex!==null?
+            //     leftGridIndex:
+            //     topGridIndex!==null?topGridIndex:null
+            if(leftGridIndex===null){
+                setupGrid = topGridIndex
+            }else {
+                setupGrid = leftGridIndex
+            }
+        }
+        console.log(setupGrid)
+        if(setupGrid===null||setupGrid<0){
+
+            return
+        }else {
+            Container.allGrid[setupGrid].ele.click()
+            setTimeout(
+                this.autoMove.bind(this)
+            ,500)
+        }
     }
 }
 
@@ -85,7 +131,7 @@ export class Grid {
     public x!: Pos
     public y!: Pos
     public isNull!: boolean
-    private opt!: Opt
+    public opt!: Opt
 
     constructor(
         private warpEle: HTMLElement,
@@ -112,7 +158,7 @@ export class Grid {
     addClickGrid() {
         this.ele.addEventListener('click', (e) => {
             this.opt.move()
-            Container.callback&&Container.callback('click', '')
+            Container.callback && Container.callback('click', '')
         })
     }
 
@@ -148,6 +194,7 @@ export class Grid {
         this.index = index
         this.updatePos()
     }
+
 }
 
 export class Opt {

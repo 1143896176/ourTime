@@ -9,7 +9,7 @@ export const router = createRouter({
         ...routes,
         {
             path:'/:catchAll(.*)',
-            redirect:'/home'
+            redirect:'/game'
         }
     ]
 })
