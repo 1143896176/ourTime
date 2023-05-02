@@ -4,7 +4,7 @@
     <img :src="getAssetsFile('stars.png')"  id="starts">
     <img :src="getAssetsFile('moon.png')"  id="moon">
     <img :src="getAssetsFile('mountains_behind.png')"  id="mountains_behind">
-    <h2  id="text" style="text-align: center;    font-family: cursive;" class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="openNoteBook">
+    <h2  id="text" style="text-align: center;    font-family: 宋体;" class="animate__animated animate__bounce animate__infinite animate__pulse " @click.stop="openNoteBook">
       2022年09月12日 <br>
       10:49:00 <br>
       时间回到 {{diffTime.day}}天{{diffTime.h}}小时前
