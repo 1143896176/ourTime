@@ -19,7 +19,7 @@ let container :Container
 const bg = getAssetsFile('bg1.jpg')
 function init(){
    warp = document.querySelector('.container')
-    container = new Container( warp!,bg,callback)
+    container = new Container( warp!,bg,callback,3)
 }
 function callback(type:string,value?:any) {
   if(type==='win'){
@@ -35,6 +35,7 @@ function callback(type:string,value?:any) {
 }
 function reSet() {
   container.reSet()
+  warp!.style.background = ``
 }
 onMounted(()=>{
   init()
